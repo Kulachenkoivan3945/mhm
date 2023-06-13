@@ -1,11 +1,14 @@
 <template>
   <div class="product-card">
     <router-link :to="linkOpen">
-      <img class="card-image" :src="require(`../../assets/images/products/` + productInfo.image)" alt="">
+      <img class="card-image" :src="require(`../../assets/images/products/` + productInfo.images[0])" alt="">
       <p class="title">{{ productInfo.name }}</p>
-      <p class="price" :class="{ 'old-price': productInfo.discountPrice }">{{ productInfo.price }}₽</p>
-      <p v-if="productInfo.discountPrice" class="discount-price">
-        {{ productInfo.discountPrice }}₽</p>
+      <div class="price-block">
+        <p v-if="productInfo.discountPrice" class="discount-price">
+          {{ productInfo.discountPrice }}₽</p>
+          <p class="price" :class="{ 'old-price': productInfo.discountPrice }">{{ productInfo.price }}₽</p>
+      </div>
+
     </router-link>
     <div class="cart-block">
       <div @click="addToCart" class="cart-block-btn" :title="!isInCart ? 'Добавить в корзину' : 'Убрать из корзины'">
@@ -81,6 +84,7 @@ a {
   align-self: stretch;
   justify-self: stretch;
   height: 100%;
+
 }
 
 .card-image {
@@ -104,20 +108,38 @@ a {
 
 .price {
   font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .old-price {
   text-decoration: line-through;
   margin-bottom: 5px;
+  color: gray;
+  font-size: 0.8rem;
+
 }
 
 .discount-price {
-  margin-top: 0px;
+  margin: 0px;
   font-weight: bold;
   color: red;
+  margin-left: 10%;
+}
+
+.price-block{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.price-block p{
+  width: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .cart-block {
+  margin-top: 7px;
   display: flex;
   width: 100%;
   justify-content: center;

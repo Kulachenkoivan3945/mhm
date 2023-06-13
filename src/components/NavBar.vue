@@ -88,10 +88,12 @@ a {
 .header-big ul {
     display: flex;
     flex-direction: row;
-    margin: 0;
     padding-left: 10vw;
 }
 
+ul{
+    margin: 0 !important;
+}
 li {
     list-style: none;
 }
