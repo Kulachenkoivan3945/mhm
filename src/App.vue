@@ -1,26 +1,75 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <header>
+      <NavBar :pages="pages" />
+    </header>
+    <main>
+      <router-view />
+    </main>
+    <footer>
+      <FooterPanel />
+    </footer>
+  </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NavBar from '@/components/NavBar.vue';
+import FooterPanel from '@/components/FooterPanel.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar,
+    FooterPanel
+  },
+  data() {
+    return {
+      pages: [{
+        name: 'Главная',
+        path: '/'
+      }, {
+        name: 'Товары',
+        path: '/products'
+      },
+      {
+        name: 'Корзина',
+        path: '/cart'
+      }]
+    }
   }
-}
+};
 </script>
-
 <style>
+@font-face {
+  font-family: 'Montserrat';
+  src: url('assets/fonts/Montserrat/static/Montserrat-Regular.ttf');
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  max-width: 100vw;
+}
+main{
+}
+* {
+  font-family: 'Montserrat';
+}
+
+p {
+  font-size: 1rem;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media(max-width:1000px) {
+  html {
+    font-size: 15px;
+  }
 }
 </style>
