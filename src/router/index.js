@@ -22,12 +22,7 @@ const routes = [{
         path: '/Cart',
         name: 'Cart',
         component: HomeView
-    },
-    {
-        path: '/',
-        name: 'home',
-        component: HomeView
-    },
+    }
 ]
 
 const router = createRouter({
