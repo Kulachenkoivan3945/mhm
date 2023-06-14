@@ -264,7 +264,7 @@ export default createStore({
 
         },
         getSearchResults: state => searchQuery => {
-            return state.allProducts.filter(product => product.name.toLowerCase().indexOf(searchQuery) >= 0);
+            return state.allProducts.filter(product => product.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0);
 
         }
     },

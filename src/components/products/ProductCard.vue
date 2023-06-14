@@ -83,15 +83,14 @@ a {
   width: 100%;
   align-self: stretch;
   justify-self: stretch;
-  height: 100%;
+  height: calc(100% - 40px);
 
 }
 
 .card-image {
-  margin-top: 20px;
-  width: 90%;
-  min-height: 350px;
-  max-height: 350px;
+  width: calc(100% - 20px);
+  padding: 10px;
+  height: 75%;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -106,6 +105,9 @@ a {
   text-align: center;
 }
 
+.title{
+  margin: 0;
+}
 .price {
   font-weight: bold;
   margin-top: 5px;
@@ -155,6 +157,7 @@ a {
   border-radius: 5px;
   margin-bottom: 10px;
   cursor: pointer;
+  
 
 }
 

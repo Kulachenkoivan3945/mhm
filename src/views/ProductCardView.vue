@@ -1,12 +1,16 @@
 <template>
   <div class="home">
+
+    <div class="go-back">
+
+      <router-link to="/products">
+        <img src="../assets/images/icons/go-back.png" alt="">
+      </router-link>
+    </div>
+
     <div class="product-container">
+
       <div class="images-block">
-        <!-- <div class="aside-images">
-          <div v-for="asideImage in product.asideImages" :key="asideImage" class="aside-image-container">
-            <img :src="require(`../assets/images/products/` + asideImage)" @click="changeMainPhoto(asideImage)" alt="">
-          </div>
-        </div> -->
         <div class="main-image-container">
           <div class="main-image">
             <img v-for="image in product.images" :key="image" :style="imagePosition"
@@ -136,6 +140,14 @@ export default {
 </script>
 
 <style scoped>
+
+.home{
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px;
+  background-size: cover;
+  background-color: rgba(197, 193, 236, 0.205);
+}
 .product-container {
   width: 100vw;
   min-height: calc(100vh - 200px);
@@ -143,12 +155,20 @@ export default {
   flex-direction: row;
   justify-content: center;
   padding-bottom: 100px;
-  padding-top: 100px;
+  padding-top: 0px;
   /*background-image: url("../assets/images/mainPage/12.jpg");*/
-  background-size: cover;
-  background-color: rgba(197, 193, 236, 0.205);
 }
-
+.go-back a{
+padding-left: 20px;
+transition: all 0.5s ease-in-out;
+}
+.go-back a:hover{
+  transform: translateX(-10px);
+}
+.go-back a{
+  display: block;
+  width: 32px;
+}
 .images-block {
   min-width: 40%;
   max-width: 40%;

@@ -65,9 +65,10 @@ export default {
   margin-right: 20px;
   margin-left: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 320px);
+  grid-template-columns: repeat(auto-fill, 300px);
   grid-auto-flow: column;
-  grid-auto-columns: 320px;
+  grid-auto-columns: 300px;
+  grid-auto-rows: 500px;
   overflow:scroll;
   gap: 50px 20px;
   justify-items: stretch;
