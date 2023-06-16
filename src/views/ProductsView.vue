@@ -1,14 +1,17 @@
+
 <template>
   <div class="products">
     <div class="search-bar">
       <div>
         <img src="../assets/images/icons/search.png" alt="">
-        <input @input="search" type="search" v-model="searchQuery" placeholder="Поиск по названию">
+        <input @keyup.enter="search" type="search" v-model="searchQuery" placeholder="Поиск по названию">
         <p v-if="isNoMatches">По вашему запросу не найдено результатов</p>
       </div>
     </div>
     <div class="products-container">
-      <ProductCard v-for="product in searchResults" :key="product.id" :productInfo="product" />
+      <transition-group name="product-list" mode="out-in">
+        <ProductCard v-for="product in searchResults" :key="product.id" :productInfo="product" class="product-item" />
+      </transition-group>
     </div>
   <!--   <aside class="filter-bar-container">
       <img src="../assets/images/icons/go-back.png" alt="">
@@ -36,13 +39,14 @@
         </p>
 
       </div>
-    </aside> -->
+      </aside> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import ProductCard from '@/components/products/ProductCard.vue'
+
 
 export default {
   name: 'ProductsView',
@@ -66,6 +70,7 @@ export default {
         this.isNoMatches = true;
       }
     }
+
   },
   mounted() {
     /* window.scrollTo(0, 0) */
@@ -90,8 +95,9 @@ export default {
   grid-auto-rows: 500px;
   justify-items: stretch;
   gap: 20px 20px;
-  
+
 }
+
 
 .search-bar {
   width: 100%;
@@ -102,7 +108,7 @@ export default {
 .search-bar div {
   width: 50%;
   margin-left: 100px;
-  
+
   position: relative;
 }
 

@@ -5,13 +5,11 @@
     <div class="contacts-links-container">
       <div class="contacts-phones contacts-links">
         <p>По телефону:</p>
-        <a href="tel:+78121112233">+7 (812) 111-22-33</a>
-        <a href="tel:+78125237878">+7 (812) 523-78-78</a>
+        <a href="tel:+79370875793">+7 (937) 087-57-93</a>
       </div>
       <div class="contacts-emails contacts-links">
         <p>По электронной почте:</p>
-        <a href="mailto:BouqetShop.info@mail.ru">BouqetShop.info@mail.ru</a>
-        <a href="mailto:BouqetShop.org@mail.ru">BouqetShop.org@mail.ru</a>
+        <a href="mailto:marusya.hmade@yandex.ru">marusya.hmade@yandex.ru</a>
       </div>
       <div class="contacts-social contacts-links">
         <p>Через социальные сети:</p>
@@ -20,10 +18,7 @@
             <img src="../assets/images/social/vk.png" alt="">
           </a>
           <a href="">
-            <img src="../assets/images/social/inst.png" alt="">
-          </a>
-          <a href="">
-            <img src="../assets/images/social/telegram.png" alt="">
+            <img class="contacts-social-telegramm" src="../assets/images/social/telegram.png" alt="">
           </a>
         </div>
       </div>
@@ -93,8 +88,18 @@ h2 {
   margin-left: 10px;
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
+.contacts-social img{
+  height: 40px;
+  width: 40px;
+}
+.contacts-social-telegramm{
+  width: 45px !important;
+  height: 45px !important;
+}
 .contacts-social a:hover {
   transform: scale(1.1);
 }

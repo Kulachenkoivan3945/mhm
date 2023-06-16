@@ -22,7 +22,6 @@ export default {
   props: ['discount'],
   methods: {
     product(id) {
-      console.log(this.$store.getters.getProductById(id));
       return this.$store.getters.getProductById(id);
     }
   },
