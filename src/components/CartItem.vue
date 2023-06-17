@@ -1,11 +1,14 @@
 <template>
     <div class="container">
-        <img class="item-image" :src="require(`../assets/images/products/` + itemInfo.images[0])" alt="">
+        <router-link :to="'/products/' + itemInfo.id">
+            <img class="item-image" :src="require(`../assets/images/products/` + itemInfo.images[0])" alt="">
+        </router-link>
 
         <div class="item-description">
             <div class="item-text">
-                <p class="item-name">{{ itemInfo.name }}</p>
-
+                <router-link :to="'/products/' + itemInfo.id">
+                    <p class="item-name">{{ itemInfo.name }}</p>
+                </router-link>
                 <div class="price-block">
                     <p v-if="itemInfo.discountPrice" class="discount-price">
                         {{ itemInfo.discountPrice }}₽</p>
@@ -60,6 +63,11 @@ export default {
 
 }
 
+.item-text a{
+    text-decoration:none !important;
+    color: rgb(21, 8, 137);
+    padding-right: 20px;
+}
 .item-text {
     display: flex;
     padding-left: 30px;
@@ -88,7 +96,13 @@ export default {
     border: 1px solid rgb(225, 225, 225);
     background-color: rgba(134, 134, 134, 0.068);
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
 
+}
+
+.delete-btn:hover{
+    background-color: rgba(211, 6, 6, 0.768);
+    color: white;
 }
 
 .price {

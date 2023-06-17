@@ -340,11 +340,16 @@ transition: all 0.5s ease-in-out;
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
+  transition: all 0.5s ease-in-out
 }
 
-.fade-enter-from, .fade-leave-to {
-  opacity: 0
+.fade-enter-from{
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 .to-cart{
