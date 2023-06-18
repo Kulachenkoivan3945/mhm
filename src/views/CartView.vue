@@ -331,13 +331,14 @@ export default {
   letter-spacing: 1px;
   background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.423));
   background-color: rgb(0, 0, 0);
-  box-shadow: 5px 5px 15px rgba(215, 215, 215, 0.901);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.866);
   transition: all 0.5s ease-in-out;
 
 }
 
 .empty-cart-btn:hover {
   animation: shake 2s ease-in-out;
+  box-shadow: 0px 5px 20px rgba(9, 239, 189, 0.866);
 }
 
 @keyframes shake {

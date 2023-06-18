@@ -285,6 +285,14 @@ export default createStore({
                 type: 'vid'
             },
             {
+                src: '4.mp4',
+                type: 'vid'
+            },
+            {
+                src: '5.mp4',
+                type: 'vid'
+            },
+            {
                 src: '7.jpg',
                 type: 'img'
             },

@@ -2,32 +2,53 @@
 <template>
   <div class="gallery">
     <div class="gallery-container">
-      <div v-for="item in galleryItems" :key="item" class="gallery-item">
-        <img v-if="item.type=='img'" 
+      <div v-for="item in galleryItems" :key="item" 
+      @click="openModal(item)" 
+      class="gallery-item">
+        <img v-if="item.type == 'img'"
         :src="require(`../assets/images/gallery/` + item.src)" alt="">
 
-        <video v-else autoplay="autoplay" loop>
-          <source  :src="require(`../assets/images/gallery/` + item.src)" type="video/mp4">
+        <video v-else 
+        autoplay="autoplay" loop controls muted preload="auto">
+          <source :src="require(`../assets/images/gallery/` + item.src)" type="video/mp4">
         </video>
       </div>
     </div>
+
+    <transition name="modal-fade">
+      <GalleryModal
+      v-if="modalState"
+      @onCloseModal="closeModal"
+      :item="modalItem"></GalleryModal>
+    </transition>
 
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import GalleryModal from '@/components/modals/GalleryModal.vue'
 
 export default {
   name: 'GalleryView',
+  components:{
+    GalleryModal
+  },
   data() {
     return {
       galleryItems: this.$store.state.galleryItems,
+      modalState: false,
+      modalItem: {}
     }
   },
   methods: {
-
+    openModal(item){
+      this.modalItem=item;
+      this.modalState = true;
+    },
+    closeModal(){
+      this.modalState = false;
+    }
   },
   mounted() {
     this.$store.state.activaPage = 'gallery';
@@ -55,22 +76,37 @@ export default {
   gap: 20px 20px;
 }
 
-.gallery-item{
+.gallery-item {
   width: 100%;
   height: 100%;
-}
-.gallery-item img{
-  width: 100%;
-  height: 100%;
+  transition: all 0.5s ease-in-out;
   border-radius: 10px;
 }
 
-.gallery-item video{
+.gallery-item:hover {
+  box-shadow: 5px 5px 15px rgba(55, 55, 55, 0.937);
+
+}
+
+.gallery-item img , .gallery-item video {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.gallery-item video {
   outline: unset;
   object-fit: cover;
-  
+
 }
+
+.modal-fade-leave-to, .modal-fade-enter-from{
+  opacity: 0;
+}
+
+.modal-fade-enter-active, .modal-fade-leave-active{
+  transition: all 0.5s ease-in-out;
+}
+
 </style>
