@@ -7,8 +7,7 @@
             <ul>
                 <li v-for="page in pages" :key="page">
                     <router-link :to="page.path"
-                    @click="currentTab = page.name"
-                    :class="{active: currentTab===page.name}"
+                    :class="{active: currentTab===page.mark}"
                     >{{ page.name }}</router-link>
                 </li>
             </ul>
@@ -40,12 +39,17 @@ export default {
     data() {
         return {
             burgerState: false,
-            currentTab: this.pages[0].name
         }
     },
     methods: {
         changeBurgerState() {
             this.burgerState = !this.burgerState;
+        }
+    },
+    computed:{
+        currentTab(){
+            console.log(this.$store.state.activaPage);
+            return this.$store.state.activaPage;
         }
     }
 }

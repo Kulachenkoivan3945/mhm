@@ -139,7 +139,8 @@ export default {
     }
   },
   mounted() {
-    /* window.scrollTo(0, 0) */
+    this.$store.state.activaPage = 'cart';
+    window.scrollTo(0, 0)
     // Select the node that will be observed for mutations
 
     if (this.cartLength != 0) {

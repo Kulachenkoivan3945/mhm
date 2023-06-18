@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: {
+        activePage: 'home',
         allProducts: [{
                 id: 0,
                 name: 'Изящное колье из авантюрина',
@@ -250,7 +251,72 @@ export default createStore({
                     id: 10
                 }
             ]
-        }]
+        }],
+        galleryItems: [{
+                src: '1.jpg',
+                type: 'img'
+            },
+            {
+                src: '2.jpg',
+                type: 'img'
+            },
+            {
+                src: '1.mp4',
+                type: 'vid'
+            },
+            {
+                src: '3.jpg',
+                type: 'img'
+            },
+            {
+                src: '4.jpg',
+                type: 'img'
+            },
+            {
+                src: '5.jpg',
+                type: 'img'
+            },
+            {
+                src: '6.jpg',
+                type: 'img'
+            },
+            {
+                src: '2.mp4',
+                type: 'vid'
+            },
+            {
+                src: '7.jpg',
+                type: 'img'
+            },
+            {
+                src: '8.jpg',
+                type: 'img'
+            },
+            {
+                src: '9.jpg',
+                type: 'img'
+            },
+            {
+                src: '10.jpg',
+                type: 'img'
+            },
+            {
+                src: '11.jpg',
+                type: 'img'
+            },
+            {
+                src: '12.jpg',
+                type: 'img'
+            },
+            {
+                src: '13.jpg',
+                type: 'img'
+            },
+            {
+                src: '3.mp4',
+                type: 'vid'
+            }
+        ]
     },
     getters: {
         getProductById: state => id => {

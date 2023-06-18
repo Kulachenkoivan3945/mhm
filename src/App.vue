@@ -24,14 +24,22 @@ export default {
     return {
       pages: [{
         name: 'Главная',
-        path: '/'
+        path: '/',
+        mark: 'home'
       }, {
         name: 'Товары',
-        path: '/products'
+        path: '/products',
+        mark: 'products'
       },
       {
         name: 'Корзина',
-        path: '/cart'
+        path: '/cart',
+        mark: 'cart'
+      },
+      {
+        name: 'Галерея',
+        path: '/gallery',
+        mark: 'gallery'
       }]
     }
   }

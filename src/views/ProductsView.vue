@@ -73,6 +73,7 @@ export default {
 
   },
   mounted() {
+    this.$store.state.activaPage = 'products';
     /* window.scrollTo(0, 0) */
 
   }

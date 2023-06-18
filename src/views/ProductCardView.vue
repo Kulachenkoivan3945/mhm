@@ -2,10 +2,9 @@
   <div class="home">
 
     <div class="go-back">
-
-      <router-link to="/products">
-        <img src="../assets/images/icons/go-back.png" alt="">
-      </router-link>
+        <img 
+        @click="goBack"
+        src="../assets/images/icons/go-back.png" alt="">
     </div>
 
     <div class="product-container">
@@ -117,6 +116,9 @@ export default {
     },
     prevImage() {
       if (this.activeImage > 0) this.activeImage--
+    },
+    goBack(){
+      history.back();
     }
   },
   computed: {
@@ -134,7 +136,7 @@ export default {
     }
   },
   mounted() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
 }
 </script>
@@ -158,11 +160,11 @@ export default {
   padding-top: 0px;
   /*background-image: url("../assets/images/mainPage/12.jpg");*/
 }
-.go-back a{
+.go-back img{
 padding-left: 20px;
 transition: all 0.5s ease-in-out;
 }
-.go-back a:hover{
+.go-back img:hover{
   transform: translateX(-10px);
 }
 .go-back a{

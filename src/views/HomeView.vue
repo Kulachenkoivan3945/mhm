@@ -43,6 +43,9 @@ export default {
     return {
       discounts: this.$store.state.discounts
     }
+  },
+  mounted(){
+    this.$store.state.activaPage = 'home';
   }
 }
 </script>
