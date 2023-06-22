@@ -1,6 +1,6 @@
 <template>
     <div @click="closeModal" class="gallery-modal" v-if="item!='undefined'">
-        <img v-if="item.type == 'img'" @click="nothing" :src="require(`../../assets/images/gallery/` + item.src)" alt="">
+        <img v-if="item.type=='img'" @click="nothing" :src="require(`../../assets/images/gallery/` + item.src)" alt="">
 
         <video v-else @click="nothing" autoplay="autoplay" loop controls muted preload="auto">
             <source :src="require(`../../assets/images/gallery/` + item.src)" type="video/mp4">

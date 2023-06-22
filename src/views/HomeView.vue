@@ -33,7 +33,20 @@
       </ul>
     </section>
     <section class="feedback">
-      <h2></h2>
+      <h2>Отзывы о нас</h2>
+      <ul>
+        <li v-for="feedbackItem in showedFeedback" :key="feedbackItem" class="scroll-animated">
+          <FeedbackCard :feedbackCardInfo="feedbackItem"></FeedbackCard>
+        </li>
+      </ul>
+
+      <div v-if="showedFeedbackCount < feedback.length" class="feedback-show-more" ref="feedbackShowMoreBtn">
+        <button @click="showMoreFeedback">Показать еще</button>
+      </div>
+
+<!--       <div class="feedback-show-more" ref="feedbackShowMoreBtn">
+        <button @click="showMoreFeedback">Добавить отзыв</button>
+      </div> -->
     </section>
   </div>
 </template>
@@ -43,18 +56,27 @@
 //import HelloWorld from '@/components/HelloWorld.vue'
 import discountCard from '@/components/discountCard.vue'
 import ActivityCard from '@/components/ActivityCard.vue'
+import FeedbackCard from '@/components/FeedbackCard.vue'
 
 export default {
   name: 'HomeView',
   components: {
     discountCard,
-    ActivityCard
+    ActivityCard,
+    FeedbackCard
     //HelloWorld
   },
   data() {
     return {
       discounts: this.$store.state.discounts,
-      activities: this.$store.state.homeActivities
+      activities: this.$store.state.homeActivities,
+      feedback: this.$store.state.feedback,
+      showedFeedbackCount: 2
+    }
+  },
+  computed: {
+    showedFeedback() {
+      return this.feedback.slice(0, this.showedFeedbackCount);
     }
   },
   methods: {
@@ -62,7 +84,15 @@ export default {
       if (isShowed) {
         this.$refs.activityContainer.style.height = this.$refs.activityContainer.clientHeight + n + 'px'
       }
-      console.log(n);
+    },
+    showMoreFeedback() {
+      this.showedFeedbackCount += 2;
+
+      if (this.showedFeedbackCount < this.feedback.length) {
+        setTimeout(() => this.$refs.feedbackShowMoreBtn.scrollIntoView({ block: 'end', behavior: 'smooth' }), 100);
+      }
+
+
     }
   },
   mounted() {
@@ -75,11 +105,11 @@ export default {
       for (var i = 0; i < scrollAnimated.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = scrollAnimated[i].getBoundingClientRect().top;
-        var elementVisible = 150;
+        var elementVisible = 250;
 
         if (elementTop < windowHeight - elementVisible) {
           scrollAnimated[i].classList.add("animated-active");
-        } 
+        }
         else {
           scrollAnimated[i].classList.remove("animated-active");
           scrollAnimated[i].classList.add("animated-leave");
@@ -94,21 +124,22 @@ export default {
 </script>
 
 <style scoped>
-
-.animated-leave{
+.animated-leave {
   opacity: 0 !important;
   transform: translateY(-100px) !important;
 }
+
 .animated-active {
   opacity: 1 !important;
   transform: none !important;
 }
 
-.scroll-animated{
+.scroll-animated {
   opacity: 0;
   transform: translateY(150px);
   transition: all 1.3s ease-in-out;
 }
+
 .about {
   display: flex;
   align-items: center;
@@ -134,6 +165,13 @@ export default {
   color: rgb(60, 89, 149);
   text-align: center;
   letter-spacing: 1px;
+  font-size: 2rem;
+}
+
+.about-description h2 {
+  text-align: left;
+  font-size: 1.2rem;
+  padding-top: 0;
 }
 
 .about-description {
@@ -195,7 +233,7 @@ export default {
   background: linear-gradient(360deg, #b9deed, #efefef);
 }
 
-.discounts h2 {
+h2 {
   margin-top: 0;
   text-align: center;
   padding-top: 20px;
@@ -231,8 +269,6 @@ export default {
 
 .activities h2 {
   color: white;
-  text-align: center;
-  font-size: 1.8rem;
 }
 
 .activities ul {
@@ -250,7 +286,52 @@ export default {
 
 .feedback {
   width: 100%;
-  height: 800px;
+  padding-bottom: 50px;
   background-color: rgb(255, 255, 255);
+}
+
+.feedback ul {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.feedback li {
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.156);
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.119);
+}
+
+.feedback li:nth-child(even) {
+  background-color: #ffffff;
+
+}
+
+.feedback li:nth-child(odd) {
+  background-color: #80d3f313;
+}
+
+.feedback-show-more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.feedback-show-more button {
+  padding: 15px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: rgba(236, 235, 235, 0.732);
+  border: 1px solid rgba(112, 112, 112, 0.655) !important;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  box-shadow: 5px 5px 10px gray;
+  transition: all 0.5s ease-in-out;
+}
+
+.feedback-show-more button:hover {
+  background-color: #0c022c;
+  color: white;
 }
 </style>
