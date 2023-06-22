@@ -387,8 +387,9 @@ transition: all 0.5s ease-in-out;
 
 
 .to-cart img {
-  width: 30px;
-  padding-right: 20px;
+  width: 30px !important;
+  margin-right: 10px;
+  
 }
 
 .price {

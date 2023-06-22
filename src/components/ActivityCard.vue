@@ -31,7 +31,7 @@ export default {
     methods: {
         show() {
             this.isShowed = true;
-            this.$refs.activityCard.style.height = 100 +
+            this.$refs.activityCard.style.height = 50 +
                 this.$refs.activityContent.clientHeight +
                 this.$refs.activityCardContent.offsetHeight + 'px';
             clearTimeout();

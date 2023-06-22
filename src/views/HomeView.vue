@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div class="about">
+    <section class="about">
       <div class="about-description">
         <h1>Маруся Мастерова</h1>
         <h2>Уникальные украшения ручной работы для индивидуальности в каждой детали</h2>
@@ -14,27 +14,27 @@
           </button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div id="discounts" class="discounts ">
+    <section id="discounts" class="discounts ">
       <h2>Акции и скидки</h2>
 
       <div class="discounts-cards-container scroll-animated">
         <discountCard v-for="discount in discounts" :key="discount" :discount="discount" />
       </div>
 
-    </div>
-    <div class="activities " ref="activityContainer">
+    </section>
+    <section class="activities " ref="activityContainer">
       <h2>Чем мы занимаемся</h2>
       <ul class="scroll-animated">
         <li v-for="activity in activities" :key="activity">
           <ActivityCard :activityInfo="activity"></ActivityCard>
         </li>
       </ul>
-    </div>
-    <div class="feedback">
-
-    </div>
+    </section>
+    <section class="feedback">
+      <h2></h2>
+    </section>
   </div>
 </template>
 
@@ -83,7 +83,6 @@ export default {
         else {
           scrollAnimated[i].classList.remove("animated-active");
           scrollAnimated[i].classList.add("animated-leave");
-          console.log(1);
         }
       }
     }
@@ -108,7 +107,7 @@ export default {
 .scroll-animated{
   opacity: 0;
   transform: translateY(150px);
-  transition: all 1s ease-in-out;
+  transition: all 1.3s ease-in-out;
 }
 .about {
   display: flex;
