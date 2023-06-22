@@ -12,11 +12,20 @@
       <div class="images-block">
         <div class="main-image-container">
           <div class="main-image">
-            <img v-for="image in product.images" :key="image" :style="imagePosition"
-              :src="require(`../assets/images/products/` + image)" alt="">
+            <template v-for="image in product.images" :key="image">
+              <img v-if="image.type=='img'" :style="imagePosition"
+              :src="require(`../assets/images/products/` + image.src)" alt="">
+
+              <video v-else 
+              autoplay="autoplay" loop controls muted preload="auto" :style="imagePosition">
+                <source :src="require(`../assets/images/products/` + image.src)" type="video/mp4">
+              </video>
+
+            </template>
+            
           </div>
           <div class="current-image">
-            <span v-for="n in 3" :key="n" :class="{ 'current-image-indicator-active': n == (activeImage + 1) }"
+            <span v-for="n in product.images.length" :key="n" :class="{ 'current-image-indicator-active': n == (activeImage + 1) }"
               class="current-image-indicator"></span>
 
           </div>
@@ -111,7 +120,7 @@ export default {
       this.$store.commit('removeFromCart', this.productId);
     },
     nextImage() {
-      if (this.activeImage < 2) this.activeImage++
+      if (this.activeImage < this.product.images.length -1) this.activeImage++
 
     },
     prevImage() {
@@ -216,6 +225,15 @@ transition: all 0.5s ease-in-out;
 
 }
 
+.main-image video {
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+
+}
 .current-image {
   width: 100%;
   height: 50px;

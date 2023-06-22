@@ -8,10 +8,27 @@ export default createStore({
                 name: 'Изящное колье из авантюрина',
                 price: '1000',
                 discountPrice: '700',
-                images: [
-                    '1.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '1.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'диаметр колье 14,5 см, длина самого крупного сегмента 14 см,',
                 composition: 'Натуральный авантюрин бусины 4мм, 8мм, 10мм, 12мм, 14 мм.',
@@ -24,10 +41,27 @@ export default createStore({
                 name: 'Колье и серьги Аметист в этническом стиле',
                 price: '2000',
                 discountPrice: '',
-                images: [
-                    '2.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: `Колье диаметр обруча 15 см, длина 22 см. 
                 Серьги длина 6,5 см, ширина 4 см.`,
@@ -42,10 +76,23 @@ export default createStore({
                 name: 'Стильная джинсовая куртка для девушки',
                 price: '2000',
                 discountPrice: '',
-                images: [
-                    '3.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    }
+
                 ],
                 size: '44',
                 composition: '100% коттон',
@@ -59,10 +106,27 @@ export default createStore({
                 name: 'Браслет и серьги из уральского циркона',
                 price: '2500',
                 discountPrice: '',
-                images: [
-                    '4.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '4.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'Браслет длина 23 см (с возможностью регулировки), серьги длина 7 см.',
                 composition: 'Уральский циркон бусины 12 мм и 10 мм',
@@ -76,10 +140,18 @@ export default createStore({
                 name: 'Колье и серьги из натурального камня в этническом стиле',
                 price: '2500',
                 discountPrice: '500',
-                images: [
-                    '5.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '5.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    }
                 ],
                 size: 'Колье длина 27 см, ширина 11,5 см. Серьги длина 8,5 см, ширина 6 см.',
                 composition: 'Натуральные камни синий тигровый глаз, лазурит, латунная проволока',
@@ -93,10 +165,27 @@ export default createStore({
                 name: 'Женская футболка с пером Жар птицы!',
                 price: '1000',
                 discountPrice: '',
-                images: [
-                    '6.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '6.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: '46',
                 composition: '100% хлопок',
@@ -110,10 +199,27 @@ export default createStore({
                 name: 'Колье и серьги "Ясно Солнышко"',
                 price: '1000',
                 discountPrice: '',
-                images: [
-                    '7.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '7.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'Колье и серьги "Ясно Солнышко"',
                 composition: 'Бисер, латунная проволока',
@@ -127,10 +233,27 @@ export default createStore({
                 name: 'Яркое янтарной колье',
                 price: '2000',
                 discountPrice: '1500',
-                images: [
-                    '8.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '8.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'диаметр 24 см',
                 composition: 'Натуральный скандинавский янтарь, натуральный рижский янтарь, латунная проволока',
@@ -144,10 +267,27 @@ export default createStore({
                 name: 'Серьги и браслет "Синий тигровый глаз!',
                 price: '2000',
                 discountPrice: '800',
-                images: [
-                    '9.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '9.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'Браслеты длина 22 см, серьги длина 6,5 см. На браслете застежка магнитная с фиксатором, резинка.',
                 composition: 'Натуральный камень Синий тигровый глаз 12, 8, 4 мм',
@@ -161,10 +301,27 @@ export default createStore({
                 name: 'Мужские браслеты из натуральных камней',
                 price: '1000',
                 discountPrice: '400',
-                images: [
-                    '10.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '10.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 size: 'Длина 27 см',
                 composition: 'Коричневый глазковый уральский агат, индийский коричневый и зеленый агат, яшма.',
@@ -177,10 +334,27 @@ export default createStore({
                 id: 11,
                 name: 'Колье и серьги из индийского агата',
                 price: '2500',
-                images: [
-                    '11.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '11.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 discountPrice: '',
                 size: 'диаметр колье 14,5 см, длина самого крупного сегмента 11 см, серьги длина 7 см',
@@ -194,10 +368,27 @@ export default createStore({
                 id: 12,
                 name: 'Браслет из опала и розового кварца',
                 price: '1500',
-                images: [
-                    '12.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '12.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 discountPrice: '',
                 size: 'Длина 20 см',
@@ -211,10 +402,27 @@ export default createStore({
                 id: 13,
                 name: 'Браслет из индийского агата',
                 price: '1000',
-                images: [
-                    '13.jpg',
-                    '2.jpg',
-                    '3.jpg'
+                images: [{
+                        src: '13.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '1.mp4',
+                        type: 'vid'
+                    },
+                    {
+                        src: '3.jpg',
+                        type: 'img'
+                    },
+                    {
+                        src: '2.mp4',
+                        type: 'vid'
+                    }
+
                 ],
                 discountPrice: '',
                 size: 'длина 23 см',
@@ -323,6 +531,56 @@ export default createStore({
             {
                 src: '3.mp4',
                 type: 'vid'
+            }
+        ],
+        homeActivities: [{
+                title: 'Украшения',
+                description: `Мы производим украшения ручной работы из высококачественных материалов. Каждое изделие создается с любовью и вниманием к деталям. 
+                
+                Наша коллекция украшений включает в себя ожерелья, браслеты, серьги и кольца, которые можно носить ежедневно или на особые случаи. 
+                
+                Мы с гордостью можем сказать, что наши украшения неповторимы и будут служить долго благодаря их изяществу и качеству. 
+                
+                Мы предлагаем украшения, которые подойдут для всех возрастов и стилей. 
+                
+                Выберите наше ручной работы, чтобы подчеркнуть свою индивидуальность и украсить свой гардероб.
+                `,
+                content: [{
+                    src: '1.jpg',
+                    type: 'img'
+                }]
+            },
+            {
+                title: 'Одежда',
+                description: `Мы создаем уникальную одежду с рисунками, выполненными вручную. 
+                
+                Мы используем только высококачественные материалы и экологически чистые красители. 
+                
+                Вы получаете не только красивую и стильную одежду, но и эксклюзивный дизайн, который невозможно найти в массовом производстве. 
+                
+                Наша работа - это наше призвание, и мы уверены, что вы останетесь довольны потрясающей качеством и уникальностью нашей одежды.
+                `,
+                content: [{
+                    src: '3.jpg',
+                    type: 'img'
+                }]
+            },
+            {
+                title: 'Изготовление на заказ',
+                description: `Мы готовы выполнить ваш заказ на создание уникальных рисунков ручной работы на одежде и украшений.
+                
+                Мы используем только качественные материалы и стараемся учитывать пожелания каждого клиента. 
+                
+                Вы можете быть уверены, что ваша одежда и украшения будут иметь оригинальный дизайн и выглядеть неповторимо. 
+                
+                Мы гарантируем высокое качество и быстрое исполнение заказов. 
+                
+                Свяжитесь с нами и мы с удовольствием поможем воплотить ваши идеи в жизнь!
+                `,
+                content: [{
+                    src: '4.jpg',
+                    type: 'img'
+                }]
             }
         ]
     },

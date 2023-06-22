@@ -1,7 +1,15 @@
 <template>
   <div class="product-card">
     <router-link :to="linkOpen">
-      <img class="card-image" :src="require(`../../assets/images/products/` + productInfo.images[0])" alt="">
+      <img v-if="productInfo.images[0].type=='img'"
+      class="card-image" :src="require(`../../assets/images/products/` + productInfo.images[0].src)" alt="">
+      
+      <video v-else 
+      class="card-image"
+      autoplay="autoplay" loop controls muted preload="auto" >
+        <source :src="require(`../../assets/images/products/` + productInfo.images[0].src)" type="video/mp4">
+      </video>
+
       <p class="title">{{ productInfo.name }}</p>
       <div class="price-block">
         <p v-if="productInfo.discountPrice" class="discount-price">

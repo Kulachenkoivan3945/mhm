@@ -3,7 +3,7 @@
 
     <div class="about">
       <div class="about-description">
-        <h1>MARUSYA HANDMADE</h1>
+        <h1>Маруся Мастерова</h1>
         <h2>Уникальные украшения ручной работы для индивидуальности в каждой детали</h2>
 
         <p>Мы стремимся создавать не просто украшения, а маленькие произведения искусства, которые помогут подчеркнуть
@@ -16,15 +16,25 @@
       </div>
     </div>
 
-    <div class="discounts">
+    <div id="discounts" class="discounts ">
       <h2>Акции и скидки</h2>
-      
-      <div class="discounts-cards-container">
-        <discountCard v-for="discount in discounts" :key="discount" :discount="discount"/>
-      </div>
-      
-    </div>
 
+      <div class="discounts-cards-container scroll-animated">
+        <discountCard v-for="discount in discounts" :key="discount" :discount="discount" />
+      </div>
+
+    </div>
+    <div class="activities " ref="activityContainer">
+      <h2>Чем мы занимаемся</h2>
+      <ul class="scroll-animated">
+        <li v-for="activity in activities" :key="activity">
+          <ActivityCard :activityInfo="activity"></ActivityCard>
+        </li>
+      </ul>
+    </div>
+    <div class="feedback">
+
+    </div>
   </div>
 </template>
 
@@ -32,25 +42,74 @@
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
 import discountCard from '@/components/discountCard.vue'
+import ActivityCard from '@/components/ActivityCard.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    discountCard
+    discountCard,
+    ActivityCard
     //HelloWorld
   },
   data() {
     return {
-      discounts: this.$store.state.discounts
+      discounts: this.$store.state.discounts,
+      activities: this.$store.state.homeActivities
     }
   },
-  mounted(){
+  methods: {
+    changeActivityHeight(n, isShowed) {
+      if (isShowed) {
+        this.$refs.activityContainer.style.height = this.$refs.activityContainer.clientHeight + n + 'px'
+      }
+      console.log(n);
+    }
+  },
+  mounted() {
     this.$store.state.activaPage = 'home';
+
+    // Удалить CSS-класс square-transition
+    function scrollAnimation() {
+      var scrollAnimated = document.querySelectorAll(".scroll-animated");
+
+      for (var i = 0; i < scrollAnimated.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = scrollAnimated[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          scrollAnimated[i].classList.add("animated-active");
+        } 
+        else {
+          scrollAnimated[i].classList.remove("animated-active");
+          scrollAnimated[i].classList.add("animated-leave");
+          console.log(1);
+        }
+      }
+    }
+
+    window.addEventListener("scroll", scrollAnimation);
+
   }
 }
 </script>
 
 <style scoped>
+
+.animated-leave{
+  opacity: 0 !important;
+  transform: translateY(-100px) !important;
+}
+.animated-active {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.scroll-animated{
+  opacity: 0;
+  transform: translateY(150px);
+  transition: all 1s ease-in-out;
+}
 .about {
   display: flex;
   align-items: center;
@@ -72,14 +131,15 @@ export default {
   height: 100%;
 }
 
-.about-description h1{
+.about-description h1 {
   color: rgb(60, 89, 149);
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 .about-description {
-  
+
   position: relative;
-  border-radius: 20px;
   width: 30%;
   z-index: 2;
   color: rgb(0, 0, 0);
@@ -98,7 +158,7 @@ export default {
   height: 100%;
   padding: 20px;
   /*background: radial-gradient(circle, rgba(0, 0, 0, 0.905) 0%, rgba(240, 187, 187, 0) 100%);*/
-  background: linear-gradient(to left , transparent,rgb(255, 255, 255),transparent);
+  background: linear-gradient(to left, transparent, rgb(255, 255, 255), transparent);
   background-size: 200%;
   background-position: center;
 }
@@ -132,18 +192,66 @@ export default {
   font-size: 1.1rem;
 }
 
-.discounts{
-  background: linear-gradient(360deg, #b9deed, #efefef)
+.discounts {
+  background: linear-gradient(360deg, #b9deed, #efefef);
 }
-.discounts h2{
+
+.discounts h2 {
   margin-top: 0;
   text-align: center;
   padding-top: 20px;
   font-size: 1.8rem;
 }
-.discounts-cards-container{
+
+.discounts-cards-container {
   display: flex;
   width: 100%;
-  
+  padding-bottom: 40px;
+}
+
+.activities {
+  padding-top: 20px;
+  width: 100%;
+  padding-bottom: 100px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.156), transparent, transparent, transparent, transparent, transparent, rgba(255, 255, 255, 0.156));
+  position: relative;
+}
+
+.activities::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  z-index: -1 !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background: radial-gradient(circle, rgba(0, 0, 0, 0.905) 0%, rgba(240, 187, 187, 0) 100%);*/
+  background-color: rgb(2, 2, 46);
+}
+
+.activities h2 {
+  color: white;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.activities ul {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.activities li {
+  margin: 20px;
+  flex-basis: 30%;
+}
+
+.feedback {
+  width: 100%;
+  height: 800px;
+  background-color: rgb(255, 255, 255);
 }
 </style>

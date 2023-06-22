@@ -2,9 +2,11 @@
   <div class="cart">
     <transition name="cart-fade">
       <div class="cart-container" v-if="cart.length != 0">
-        <div class="cart-items-container">
+        <div class="cart-items-container" ref="cartItemsContainer">
           <transition-group name="cart-list">
-            <CartItem class="cart-item" v-for="item in cart" :key="item.id" :item="item"></CartItem>
+            <CartItem @onDeleted="(n) => changeHeight(n)"
+              @onMount="(n) => setHeight(n)"
+              class="cart-item" v-for="item in cart" :key="item.id" :item="item"></CartItem>
           </transition-group>
         </div>
         <div class="cart-buy">
@@ -26,7 +28,7 @@
               <div class="dots"></div>
               <p>{{ discountSumm }}₽</p>
             </div>
-
+            <p class="delivery-info">*Доставка осуществляется через СДЭК за счет покупателя</p>
           </div>
           <div class="cart-buy-form">
             <p>Контактная информация</p>
@@ -91,11 +93,19 @@ export default {
       products: this.$store.state.allProducts,
       searchQuery: '',
       searchResults: this.$store.state.allProducts,
-      isNoMatches: false
+      isNoMatches: false,
+      itemsContainerHeight:100
     }
   },
   methods: {
-
+    changeHeight(n){
+      this.itemsContainerHeight -=n - 1;
+      this.$refs.cartItemsContainer.style.height= this.itemsContainerHeight +'px';
+    },
+    setHeight(n){
+      this.itemsContainerHeight += n + 1;
+      this.$refs.cartItemsContainer.style.height= this.itemsContainerHeight+'px';
+    }
 
   },
   computed: {
@@ -142,32 +152,7 @@ export default {
     this.$store.state.activaPage = 'cart';
     window.scrollTo(0, 0)
     // Select the node that will be observed for mutations
-
-    if (this.cartLength != 0) {
-      const targetNode = document.querySelector('.cart-items-container');
-      const childNode = document.querySelector('.cart-item');
-      if (childNode) targetNode.style.height = childNode.clientHeight * this.cartLength + 'px';
-      console.log(targetNode.style.height);
-
-      // Options for the observer (which mutations to observe)
-      const config = { attributes: true, childList: true, subtree: true };
-
-      // Callback function to execute when mutations are observed
-      // Create an observer instance linked to the callback function
-
-      // eslint-disable-next-line
-      const callback = (mutationList, observer) => {
-        setTimeout(() => {
-          targetNode.style.height = 10 + childNode.clientHeight * this.cartLength + 'px';
-          console.log(1);
-        }, 100);
-      };
-      const observer = new MutationObserver(callback);
-
-
-      // Start observing the target node for configured mutations
-      observer.observe(targetNode, config);
-    }
+    
   }
 }
 </script>
@@ -194,7 +179,7 @@ export default {
   border-radius: 10px;
   position: relative;
   border: 1px solid rgba(128, 128, 128, 0.486);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .cart-item {
@@ -255,6 +240,11 @@ export default {
   margin-right: 5px;
 }
 
+.delivery-info{
+  font-size: 0.8rem !important;
+  width: 100%;
+  white-space:break-spaces !important;
+}
 .cart-buy-form {
   display: flex;
   flex-direction: column;
@@ -346,7 +336,6 @@ export default {
 
   }
   25%,75%{
-   
     transform: translateY(5px);
   }
   50%{

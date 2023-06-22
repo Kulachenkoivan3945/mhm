@@ -14,6 +14,7 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import FooterPanel from '@/components/FooterPanel.vue';
+
 export default {
   name: 'App',
   components: {
@@ -60,8 +61,11 @@ main{
 }
 * {
   font-family: 'Montserrat';
+  box-sizing: border-box;
 }
-
+li{
+  list-style: none;
+}
 p {
   font-size: 1rem;
 }

@@ -1,7 +1,12 @@
 <template>
-    <div class="container">
+    <div class="container" ref="cartItemContainer">
         <router-link :to="'/products/' + itemInfo.id">
-            <img class="item-image" :src="require(`../assets/images/products/` + itemInfo.images[0])" alt="">
+            <img v-if="itemInfo.images[0].type=='img'"
+            class="item-image" :src="require(`../assets/images/products/` + itemInfo.images[0].src)" alt="">
+
+            <video v-else class="item-image" autoplay="autoplay" loop controls muted preload="auto">
+                <source :src="require(`../assets/images/products/` + itemInfo.images[0].src)" type="video/mp4">
+            </video>
         </router-link>
 
         <div class="item-description">
@@ -33,6 +38,8 @@ export default {
     methods: {
         removeFromCart() {
             this.$store.commit('removeFromCart', this.item.id);
+            console.log(this.$refs.cartItemContainer.clientHeight);
+            this.$emit('onDeleted',this.$refs.cartItemContainer.clientHeight);
         }
     },
     computed: {
@@ -41,7 +48,7 @@ export default {
         }
     },
     mounted() {
-
+        this.$emit('onMount',this.$refs.cartItemContainer.clientHeight);
     }
 }
 </script>
@@ -63,11 +70,12 @@ export default {
 
 }
 
-.item-text a{
-    text-decoration:none !important;
+.item-text a {
+    text-decoration: none !important;
     color: rgb(21, 8, 137);
     padding-right: 20px;
 }
+
 .item-text {
     display: flex;
     padding-left: 30px;
@@ -100,7 +108,7 @@ export default {
 
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     background-color: rgba(211, 6, 6, 0.768);
     color: white;
 }
