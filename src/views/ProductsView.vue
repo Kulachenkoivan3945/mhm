@@ -11,10 +11,9 @@
     <div class="products-container">
       <ul>
         <transition-group name="product-list" mode="out-in">
-        <li v-for="product in showedProducts" :key="product.id">
-          <ProductCard :productInfo="product"
-          ref="productCardItem" class="product-item scroll-animated" />
-        </li>
+          <li v-for="product in showedProducts" :key="product.id">
+            <ProductCard :productInfo="product" ref="productCardItem" class="product-item " />
+          </li>
         </transition-group>
       </ul>
     </div>
@@ -69,7 +68,7 @@ export default {
       searchResults: this.$store.state.allProducts,
       isNoMatches: false,
       showedProductsIncrement: 0,
-      showedProductsCount: 5
+      showedProductsCount: this.$store.state.showedProductsCount
     }
   },
   computed: {
@@ -88,7 +87,7 @@ export default {
     },
     showMoreProducts() {
       this.showedProductsCount += this.showedProductsIncrement;
-      window.scrollBy({ left:0, top: 700,behavior:'smooth'})
+      this.$store.state.showedProductsCount += this.showedProductsIncrement;
     }
 
   },
@@ -96,27 +95,31 @@ export default {
     this.$store.state.activaPage = 'products';
     const containerWidth = document.querySelector('.products-container ul').clientWidth;
     const itemWidth = document.querySelector('.products-container li').clientWidth;
-    const itemInRow = Math.floor(containerWidth/itemWidth);
+    const itemInRow = Math.floor(containerWidth / itemWidth);
     console.log(itemInRow);
-    this.showedProductsCount =itemInRow*2;
-    this.showedProductsIncrement = itemInRow*2;
-    
-    function scrollAnimation() {
-      var scrollAnimated = document.querySelectorAll(".scroll-animated");
-
-      for (var i = 0; i < scrollAnimated.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = scrollAnimated[i].getBoundingClientRect().top;
-        var elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
-          scrollAnimated[i].classList.add("animated-active");
-        }
-      }
+    if (this.$store.state.showedProductsCount == 1) {
+      this.showedProductsCount = itemInRow * 2;
+      this.$store.state.showedProductsCount = itemInRow * 2;
+      this.showedProductsIncrement = itemInRow * 2;
     }
 
-    window.addEventListener("scroll", scrollAnimation);
-    window.scroll(0,10);
+    console.log()
+    /*  function scrollAnimation() {
+       var scrollAnimated = document.querySelectorAll(".products-scroll-animated");
+ 
+       for (var i = 0; i < scrollAnimated.length; i++) {
+         var windowHeight = window.innerHeight;
+         var elementTop = scrollAnimated[i].getBoundingClientRect().top;
+         var elementVisible = 100;
+ 
+         if (elementTop < windowHeight - elementVisible) {
+           scrollAnimated[i].classList.add("products-animated-active");
+         }
+       }
+     }
+ 
+     window.addEventListener("scroll", scrollAnimation);
+     window.scroll(0,10); */
     /* window.scrollTo(0, 0) */
 
   }
@@ -124,20 +127,20 @@ export default {
 </script>
 
 <style>
-.animated-active {
+.products-animated-active {
   opacity: 1 !important;
   z-index: 1 !important;
   transform: none !important;
   visibility: visible !important;
 }
 
-.scroll-animated {
+.products-scroll-animated {
   opacity: 0;
   z-index: -1 !important;
   visibility: hidden;
   transform: translateY(150px);
   transition: all 1s ease-in-out !important;
-  
+
 }
 
 .products {
@@ -148,7 +151,7 @@ export default {
   position: relative;
 }
 
-.products-container ul{
+.products-container ul {
   padding-left: 0;
   display: grid;
   justify-content: center;
