@@ -40,6 +40,7 @@
         </li>
       </ul>
 
+
       <div v-if="showedFeedbackCount < feedback.length" class="feedback-show-more" ref="feedbackShowMoreBtn">
         <button @click="showMoreFeedback">Показать еще</button>
       </div>
@@ -91,6 +92,7 @@ export default {
       if (this.showedFeedbackCount < this.feedback.length) {
         setTimeout(() => this.$refs.feedbackShowMoreBtn.scrollIntoView({ block: 'end', behavior: 'smooth' }), 100);
       }
+    
 
 
     }
@@ -118,6 +120,7 @@ export default {
     }
 
     window.addEventListener("scroll", scrollAnimation);
+    window.scrollBy({ left:0, top: 10,behavior:'smooth'})
 
   }
 }
@@ -126,18 +129,24 @@ export default {
 <style scoped>
 .animated-leave {
   opacity: 0 !important;
+  z-index: -1 !important;
   transform: translateY(-100px) !important;
 }
 
 .animated-active {
   opacity: 1 !important;
+  z-index: 1 !important;
   transform: none !important;
+  visibility: visible !important;
 }
 
 .scroll-animated {
   opacity: 0;
+  z-index: -1 !important;
+  visibility: hidden;
   transform: translateY(150px);
   transition: all 1.3s ease-in-out;
+  
 }
 
 .about {

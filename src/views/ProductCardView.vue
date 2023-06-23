@@ -88,6 +88,27 @@
             </div>
           </div>
 
+          <div class="product-recomendations">
+
+           
+              <div 
+              @click="changeRecomendationsState"
+              :class="{'recomendations-btn-hidden': isRecomendationsShowed}"
+                class="recomendations-btn">
+                <p style="color: rgb(100, 100, 100);">Рекомендации</p>
+                <img src="../assets/images/icons/slider-right-btn.png" alt="">
+              </div>
+              <div :class="{'recomendations-hidden': !isRecomendationsShowed}" class="recomendations-text">
+                <img @click="changeRecomendationsState"
+                src="../assets/images/icons/slider-left-btn-white.png" alt="">
+                <div>
+                  <p>Одежду лучше стирать в стиральной машине на режимах ручная стирка и быстрая стирка.</p>
+                  <p>Украшениям вернут первоначальный блеск теплая ванночка из раствора воды, шампуня и нашатырного спирта</p>
+                </div>
+              </div>
+          
+
+          </div>
         </div>
 
       </div>
@@ -105,6 +126,7 @@ export default {
     return {
       mainImage: "",
       activeImage: 0,
+      isRecomendationsShowed:false
     }
   },
   methods: {
@@ -128,6 +150,9 @@ export default {
     },
     goBack(){
       history.back();
+    },
+    changeRecomendationsState(){
+      this.isRecomendationsShowed = !this.isRecomendationsShowed;
     }
   },
   computed: {
@@ -290,6 +315,8 @@ transition: all 0.5s ease-in-out;
   padding: 30px;
   padding-top: 0;
   border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
 
 }
 
@@ -372,6 +399,20 @@ transition: all 0.5s ease-in-out;
   transform: translateY(10px);
 }
 
+/*
+.fade-recomendations-enter-active, .fade-recomendations-leave-active{
+  transition: all 1s ease-in-out
+}
+
+.fade-recomendations-enter-from{
+  opacity: 0;
+  transform: translateX(-10%);
+}
+.fade-recomendations-leave-to {
+  opacity: 0;
+  width: 0px;
+  
+}*/
 .to-cart{
   position: relative;
   width: 200px;
@@ -394,6 +435,63 @@ transition: all 0.5s ease-in-out;
 
 .price {
   margin-right: 40px;
+}
+
+.product-recomendations{
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+.recomendations-btn{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  min-width: 100%;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+}
+.recomendations-btn img{
+  height: 30px;
+  transition: 0.5s ease-in-out;
+}
+
+.recomendations-btn-hidden{
+  transform: translateX(150%);
+}
+
+.recomendations-text{
+  border: 1px solid rgba(128, 128, 128, 0.415);
+  min-width: 100%;
+  height: 180px;
+  color: rgb(32, 32, 32);
+  transition: all 0.5s ease-in-out;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(13, 6, 72);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  align-items: center;
+}
+.recomendations-text img{
+  height: 20px;
+  margin-right: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.recomendations-btn img:hover{
+  transform: translateX(5px);
+}
+.recomendations-text img:hover{
+  transform: translateX(-5px);
+}
+
+.recomendations-hidden{
+  height: 30px;
+  transform: translateX(-120%) ;
 }
 
 

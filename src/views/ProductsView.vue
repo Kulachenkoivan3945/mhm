@@ -9,11 +9,20 @@
       </div>
     </div>
     <div class="products-container">
-      <transition-group name="product-list" mode="out-in">
-        <ProductCard v-for="product in searchResults" :key="product.id" :productInfo="product" class="product-item" />
-      </transition-group>
+      <ul>
+        <transition-group name="product-list" mode="out-in">
+        <li v-for="product in showedProducts" :key="product.id">
+          <ProductCard :productInfo="product"
+          ref="productCardItem" class="product-item scroll-animated" />
+        </li>
+        </transition-group>
+      </ul>
     </div>
-  <!--   <aside class="filter-bar-container">
+
+    <div v-if="showedProductsCount < products.length" class="products-show-more">
+      <button @click="showMoreProducts">Показать еще</button>
+    </div>
+    <!--   <aside class="filter-bar-container">
       <img src="../assets/images/icons/go-back.png" alt="">
       <div class="filter-bar">
         <p>Тип товара:
@@ -58,7 +67,14 @@ export default {
       products: this.$store.state.allProducts,
       searchQuery: '',
       searchResults: this.$store.state.allProducts,
-      isNoMatches: false
+      isNoMatches: false,
+      showedProductsIncrement: 0,
+      showedProductsCount: 5
+    }
+  },
+  computed: {
+    showedProducts() {
+      return this.searchResults.slice(0, this.showedProductsCount);
     }
   },
   methods: {
@@ -69,11 +85,38 @@ export default {
         this.searchResults = this.products;
         this.isNoMatches = true;
       }
+    },
+    showMoreProducts() {
+      this.showedProductsCount += this.showedProductsIncrement;
+      window.scrollBy({ left:0, top: 700,behavior:'smooth'})
     }
 
   },
   mounted() {
     this.$store.state.activaPage = 'products';
+    const containerWidth = document.querySelector('.products-container ul').clientWidth;
+    const itemWidth = document.querySelector('.products-container li').clientWidth;
+    const itemInRow = Math.floor(containerWidth/itemWidth);
+    console.log(itemInRow);
+    this.showedProductsCount =itemInRow*2;
+    this.showedProductsIncrement = itemInRow*2;
+    
+    function scrollAnimation() {
+      var scrollAnimated = document.querySelectorAll(".scroll-animated");
+
+      for (var i = 0; i < scrollAnimated.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = scrollAnimated[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+
+        if (elementTop < windowHeight - elementVisible) {
+          scrollAnimated[i].classList.add("animated-active");
+        }
+      }
+    }
+
+    window.addEventListener("scroll", scrollAnimation);
+    window.scroll(0,10);
     /* window.scrollTo(0, 0) */
 
   }
@@ -81,6 +124,22 @@ export default {
 </script>
 
 <style>
+.animated-active {
+  opacity: 1 !important;
+  z-index: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+.scroll-animated {
+  opacity: 0;
+  z-index: -1 !important;
+  visibility: hidden;
+  transform: translateY(150px);
+  transition: all 1s ease-in-out !important;
+  
+}
+
 .products {
   padding: 100px 30px 80px 30px;
   /* background-image: url("../assets/images/mainPage/11.jpg");*/
@@ -89,7 +148,8 @@ export default {
   position: relative;
 }
 
-.products-container {
+.products-container ul{
+  padding-left: 0;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 300px);
@@ -142,5 +202,29 @@ export default {
   right: 10px;
   border-radius: 10px;
 
+}
+
+.products-show-more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.products-show-more button {
+  margin-top: 30px;
+  padding: 15px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: rgba(236, 235, 235, 0.732);
+  border: 1px solid rgba(112, 112, 112, 0.655) !important;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  box-shadow: 5px 5px 10px gray;
+  transition: all 0.5s ease-in-out;
+}
+
+.products-show-more button:hover {
+  background-color: #0c022c;
+  color: white;
 }
 </style>
