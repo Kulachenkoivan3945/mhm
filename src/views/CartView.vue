@@ -160,7 +160,9 @@ export default {
 <style>
 .cart {
   padding-top: 100px;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh);
+  height: max-content;
+  padding-bottom: 50px;
 }
 
 .cart-container {
@@ -202,7 +204,7 @@ export default {
 
 .cart-buy {
   width: 30%;
-  height: calc(100vh - 140px);
+  
   background-color: rgba(238, 238, 238, 0.099);
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.486);
@@ -267,6 +269,7 @@ export default {
 
 .cart-buy-form input,
 .cart-buy-form textarea {
+  width: 100%;
   padding: 5px;
   margin-top: 5px;
   border-radius: 5px;
@@ -276,6 +279,7 @@ export default {
 .cart-buy-form-btn {
   margin-top: 20px;
   padding: 10px;
+  margin-bottom: 30px;
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.412);
   align-self: center;
@@ -383,7 +387,7 @@ export default {
   }
 
   .cart-buy {
-    width: calc(80% - 40px);
+    width: 80%;
     margin: 0;
     height: auto;
     padding-bottom: 40px;
@@ -403,6 +407,16 @@ export default {
 
   .cart-buy-form {
     width: 100%;
+  }
+}
+
+@media (max-width:400px) {
+  .cart-buy{
+    width: 95%;
+  }
+
+  .cart-items-container{
+    width: 95%;
   }
 }
 </style>

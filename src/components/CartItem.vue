@@ -56,7 +56,7 @@ export default {
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-    width: calc(100% - 20px);
+    width: 100%;
     display: flex;
     padding: 10px;
 }
@@ -141,6 +141,36 @@ export default {
     font-weight: bold;
     color: red;
 
+}
+
+@media (max-width:550px) {
+    .item-text{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .item-text a{
+        padding-right: 0;
+        width: 100%;
+    }
+    .delete-btn{
+        width: 170px;
+    }
+}
+
+@media (max-width:400px) {
+    .delete-btn{
+        flex-direction: column;
+        width: 50px;
+    }
+    .delete-btn span{
+        display: none;
+    }
+}
+@media (max-width:320px) {
+    .item-image{
+        max-width: 80px;
+    }
 }
 </style>
   

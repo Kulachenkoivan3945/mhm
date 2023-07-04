@@ -1,5 +1,5 @@
 <template>
-    <section @mouseover="show" @mouseleave="close" ref="activityCard" class="activity-container">
+    <section @click="changeState" ref="activityCard" class="activity-container">
         <h3>{{ activityInfo.title }}</h3>
 
         <div class="activity-content" ref="activityContent">
@@ -29,6 +29,10 @@ export default {
         }
     },
     methods: {
+        changeState(){
+            if(this.isShowed) this.close();
+            else this.show();
+        },
         show() {
             this.isShowed = true;
             this.$refs.activityCard.style.height = 50 +
@@ -65,6 +69,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
 }
 
@@ -101,5 +106,31 @@ h3 {
     margin: 0;
     text-align: center;
 }
+
+@media(max-width:1050px){
+    .card-image{
+        max-width: none !important;
+        max-height: 50vh;
+    }
+}
+
+@media(max-width:800px){
+    .activity-content{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-image{
+        max-width: 100% !important;
+    }
+}
+
+@media(max-width:450px){
+    .activity-content{
+        width: 95%;
+    }
+}
+
 </style>
   

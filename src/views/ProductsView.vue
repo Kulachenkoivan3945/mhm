@@ -9,16 +9,16 @@
       </div>
     </div>
     <div class="products-container">
-      <ul>
+      <ul ref="productsList">
         <transition-group name="product-list" mode="out-in">
           <li v-for="product in showedProducts" :key="product.id">
-            <ProductCard :productInfo="product" ref="productCardItem" class="product-item " />
+            <ProductCard :productInfo="product" ref="productCardItem" class="product-item  " />
           </li>
         </transition-group>
       </ul>
     </div>
 
-    <div v-if="showedProductsCount < products.length" class="products-show-more">
+    <div ref="showMoreProductsBtn" class="products-show-more">
       <button @click="showMoreProducts">Показать еще</button>
     </div>
     <!--   <aside class="filter-bar-container">
@@ -86,10 +86,53 @@ export default {
       }
     },
     showMoreProducts() {
-      this.showedProductsCount += this.showedProductsIncrement;
-      this.$store.state.showedProductsCount += this.showedProductsIncrement;
-    }
 
+      console.log(this.showedProductsCount);
+
+      console.log(this.showedProductsCount + this.showedProductsIncrement
+        <= this.searchResults.length);
+      if (this.showedProductsCount + this.showedProductsIncrement
+        <= this.searchResults.length) {
+        this.showedProductsCount += this.showedProductsIncrement;
+        this.$store.state.showedProductsCount = this.showedProductsCount;
+      }
+      else {
+        this.showedProductsCount = this.searchResults.length;
+        console.log(this.showedProductsCount);
+        console.log(this.searchResults.length);
+        console.log(this.searchResults);
+        this.$store.state.showedProductsCount = this.showedProductsCount;
+        if (this.showedProductsCount >= this.searchResults.length) {
+          setTimeout(() => {
+            this.$refs.showMoreProductsBtn.style.display = 'none';
+          }, 500);
+        }
+      }
+
+      setTimeout(() => {
+        this.$refs.productsList.children[this.showedProductsCount - 1].scrollIntoView({ block: 'end', behavior: 'smooth' });
+      }, 100);
+
+
+      /* if(this.$store.state.showedProductsCount + this.showedProductsIncrement
+       >= this.searchResults){
+        this.$store.state.showedProductsCount = this.searchResults.count;
+      }
+      else {
+        this.showedProductsCount += this.showedProductsIncrement;
+      this.$store.state.showedProductsCount += this.showedProductsIncrement;
+      }
+      setTimeout(() => {
+        this.$refs.showMoreProductsBtn.scrollIntoView({ block: 'end', behavior: 'smooth' });
+      }, 100);
+
+      if (this.showedProductsCount >= this.searchResults.length) {
+        setTimeout(() => {
+          this.$refs.showMoreProductsBtn.style.display = 'none';
+        }, 200);
+      } */
+
+    },
   },
   mounted() {
     this.$store.state.activaPage = 'products';
@@ -98,32 +141,39 @@ export default {
     const itemInRow = Math.floor(containerWidth / itemWidth);
     console.log(itemInRow);
     if (this.$store.state.showedProductsCount == 1) {
-      this.showedProductsCount = itemInRow * 2;
-      this.$store.state.showedProductsCount = itemInRow * 2;
-      this.showedProductsIncrement = itemInRow * 2;
+      this.showedProductsIncrement = 10 + (10 % itemInRow);
+      console.log(10 % itemInRow);
+      console.log('inc' + this.showedProductsIncrement);
+      this.showedProductsCount = this.showedProductsIncrement;
+      this.$store.state.showedProductsCount = this.showedProductsIncrement;
+
     }
 
-    console.log()
-    /*  function scrollAnimation() {
-       var scrollAnimated = document.querySelectorAll(".products-scroll-animated");
- 
-       for (var i = 0; i < scrollAnimated.length; i++) {
-         var windowHeight = window.innerHeight;
-         var elementTop = scrollAnimated[i].getBoundingClientRect().top;
-         var elementVisible = 100;
- 
-         if (elementTop < windowHeight - elementVisible) {
-           scrollAnimated[i].classList.add("products-animated-active");
-         }
-       }
-     }
- 
-     window.addEventListener("scroll", scrollAnimation);
-     window.scroll(0,10); */
+    console.log(itemInRow)
+    /* function scrollAnimation() {
+      var scrollAnimated = document.querySelectorAll(".products-scroll-animated");
+
+      for (var i = 0; i < scrollAnimated.length; i++) {
+        if (!scrollAnimated[i].classList.contains("animated-active")) {
+          var windowHeight = window.innerHeight;
+          var elementTop = scrollAnimated[i].getBoundingClientRect().top;
+          var elementVisible = 150;
+
+          if (elementTop < windowHeight - elementVisible) {
+            scrollAnimated[i].classList.add("products-animated-active");
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", scrollAnimation); */
+    window.scroll(0, 10);
     /* window.scrollTo(0, 0) */
+
 
   }
 }
+
 </script>
 
 <style>
@@ -131,14 +181,12 @@ export default {
   opacity: 1 !important;
   z-index: 1 !important;
   transform: none !important;
-  visibility: visible !important;
 }
 
 .products-scroll-animated {
-  opacity: 0;
+  opacity: 0.3;
   z-index: -1 !important;
-  visibility: hidden;
-  transform: translateY(150px);
+  transform: scale(0.5);
   transition: all 1s ease-in-out !important;
 
 }

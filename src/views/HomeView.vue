@@ -34,18 +34,18 @@
     </section>
     <section class="feedback">
       <h2>Отзывы о нас</h2>
-      <ul>
-        <li v-for="feedbackItem in showedFeedback" :key="feedbackItem" class="scroll-animated">
+      <ul ref="feedbackList">
+        <li v-for="feedbackItem in showedFeedback" :key="feedbackItem" class="feedback-scroll-animated">
           <FeedbackCard :feedbackCardInfo="feedbackItem"></FeedbackCard>
         </li>
       </ul>
 
 
-      <div v-if="showedFeedbackCount < feedback.length" class="feedback-show-more" ref="feedbackShowMoreBtn">
+      <div class="feedback-show-more" ref="feedbackShowMoreBtn">
         <button @click="showMoreFeedback">Показать еще</button>
       </div>
 
-<!--       <div class="feedback-show-more" ref="feedbackShowMoreBtn">
+      <!--       <div class="feedback-show-more" ref="feedbackShowMoreBtn">
         <button @click="showMoreFeedback">Добавить отзыв</button>
       </div> -->
     </section>
@@ -88,11 +88,19 @@ export default {
     },
     showMoreFeedback() {
       this.showedFeedbackCount += 2;
+      setTimeout(() => {
+        if (this.showedFeedbackCount - 1 >= this.feedback.length) {
+          this.$refs.feedbackList.children[this.feedback.length - 1].scrollIntoView({ block: 'end', behavior: 'smooth' });
+        }
+        else this.$refs.feedbackList.children[this.showedFeedbackCount - 1].scrollIntoView({ block: 'end', behavior: 'smooth' });
+      }, 100);
 
-      if (this.showedFeedbackCount < this.feedback.length) {
-        setTimeout(() => this.$refs.feedbackShowMoreBtn.scrollIntoView({ block: 'end', behavior: 'smooth' }), 100);
+      if (this.showedFeedbackCount >= this.feedback.length) {
+        setTimeout(() => {
+          this.$refs.feedbackShowMoreBtn.style.display = 'none';
+        }, 100);
       }
-    
+
 
 
     }
@@ -105,22 +113,45 @@ export default {
       var scrollAnimated = document.querySelectorAll(".scroll-animated");
 
       for (var i = 0; i < scrollAnimated.length; i++) {
+        if (!scrollAnimated[i].classList.contains("animated-active")) {
+          var windowHeight = window.innerHeight;
+          var elementTop = scrollAnimated[i].getBoundingClientRect().top;
+          var elementVisible = 50;
+
+          if (elementTop < windowHeight - elementVisible) {
+            scrollAnimated[i].classList.add("animated-active");
+          }
+        }
+        /*  else {
+           scrollAnimated[i].classList.remove("animated-active");
+           scrollAnimated[i].classList.add("animated-leave");
+         } */
+      }
+    }
+
+    function feedbackScrollAnimation() {
+      var scrollAnimated = document.querySelectorAll(".feedback-scroll-animated");
+
+      for (var i = 0; i < scrollAnimated.length; i++) {
+        if (!scrollAnimated[i].classList.contains("feedback-animated-active")) {
         var windowHeight = window.innerHeight;
         var elementTop = scrollAnimated[i].getBoundingClientRect().top;
-        var elementVisible = 250;
+        var elementVisible = 50;
 
         if (elementTop < windowHeight - elementVisible) {
-          scrollAnimated[i].classList.add("animated-active");
+          scrollAnimated[i].classList.add("feedback-animated-active");
         }
-        else {
-          scrollAnimated[i].classList.remove("animated-active");
-          scrollAnimated[i].classList.add("animated-leave");
-        }
+      }
+        /*  else {
+           scrollAnimated[i].classList.remove("animated-active");
+           scrollAnimated[i].classList.add("animated-leave");
+         } */
       }
     }
 
     window.addEventListener("scroll", scrollAnimation);
-    window.scrollBy({ left:0, top: 10,behavior:'smooth'})
+    window.addEventListener("scroll", feedbackScrollAnimation);
+    window.scrollBy({ left: 0, top: 10, behavior: 'smooth' })
 
   }
 }
@@ -131,6 +162,20 @@ export default {
   opacity: 0 !important;
   z-index: -1 !important;
   transform: translateY(-100px) !important;
+}
+
+.feedback-animated-active {
+  opacity: 1 !important;
+  z-index: 1 !important;
+  transform: none !important
+}
+
+.feedback-scroll-animated {
+  opacity: 0.3;
+  z-index: -1 !important;
+  transform: scale(0.5);
+  transition: all 1.3s ease-in-out;
+
 }
 
 .animated-active {
@@ -146,7 +191,7 @@ export default {
   visibility: hidden;
   transform: translateY(150px);
   transition: all 1.3s ease-in-out;
-  
+
 }
 
 .about {
@@ -342,5 +387,76 @@ h2 {
 .feedback-show-more button:hover {
   background-color: #0c022c;
   color: white;
+}
+
+@media(max-width:1250px) {
+  .about-description {
+    width: 40%;
+  }
+}
+
+@media(max-width:1050px) {
+  .activities ul {
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+}
+
+@media(max-width:900px) {
+  .about-description {
+    width: 50%;
+  }
+
+  .title-btn button {
+    width: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .title-btn a {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media(max-width:800px) {
+  .activities ul {
+    width: 90%;
+  }
+
+}
+
+@media(max-width:700px) {
+  .about-description {
+    width: 60%;
+  }
+}
+
+@media(max-width:555px) {
+  .about-description {
+    width: 70%;
+    padding: 10px;
+  }
+}
+
+@media(max-width:420px) {
+  .about-description {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.825);
+    border-radius: 15px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  .about-description h2 {
+    text-align: center;
+  }
+
+  .about-description::after {
+    display: none;
+  }
 }
 </style>

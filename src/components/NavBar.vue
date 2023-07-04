@@ -131,8 +131,8 @@ li {
     }
 
     .logo img {
+        margin: 5px;
         
-        padding: 10px 20px 10px 20px;
     }
 
     .header-big {
@@ -205,7 +205,7 @@ li {
 
     .logo img {
         height: 30px !important;
-        padding: 10px;
+        
     }
 }
 </style>

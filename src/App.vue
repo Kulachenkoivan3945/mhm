@@ -84,4 +84,24 @@ p {
     font-size: 15px;
   }
 }
+
+@media(max-width:700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media(max-width:500px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media(max-width:400px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+
 </style>

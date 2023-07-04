@@ -103,5 +103,28 @@ export default {
     margin-right: 10px;
     border-radius: 5px;
 }
+
+@media (max-width:450px) {
+    .user-logo img{
+        height: 50px;
+        width: 50px;
+        margin-right: 15px;
+    }
+
+    .feedback-container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .feedback-meta span{
+        margin-left: 5px;
+    }
+}
+
+@media (max-width:320px) {
+    .feedback-images img{
+        width: 60px;
+        margin-right: 5px;
+    }
+}
 </style>
   

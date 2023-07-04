@@ -63,7 +63,8 @@ export default {
 
 .gallery-modal img,
 .gallery-modal video {
-    height: 90%;
+    max-height: 90%;
+    max-width: 90vw;
     border-radius: 20px;
     cursor: default;
     z-index: 50 !important;
